@@ -12,10 +12,7 @@ class ProcessTelegramUpdate implements ShouldQueue
     /**
      * Create a new job instance.
      */
-    public function __construct()
-    {
-        //
-    }
+    public function __construct(public string $telegramUpdateId) {}
 
     /**
      * Execute the job.

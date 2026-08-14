@@ -12,7 +12,12 @@ final class TelegramWebhookController extends Controller
 {
     public function __invoke(Request $request): JsonResponse
     {
-        Log::info('Telegram webhook received', $request->toArray());
+        Log::info('Telegram webhook received', [
+            'header' => $request->header(),
+            'content' => $request->getContent(),
+            'queryString' => $request->getQueryString(),
+            'all' => $request->all(),
+        ]);
 
         $secret = (string) config('telegram.webhook_secret');
         $providedSecret = (string) $request->header('X-Telegram-Bot-Api-Secret-Token');

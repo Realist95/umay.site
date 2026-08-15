@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Concerns\HasUuids;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class TelegramUpdate extends Model
 {
@@ -17,6 +18,8 @@ class TelegramUpdate extends Model
         'update_type',
         'payload',
         'status',
+        'incoming_message_id',
+        'response_message_id',
         'processed_at',
         'error_message',
     ];
@@ -30,5 +33,15 @@ class TelegramUpdate extends Model
             'payload' => 'array',
             'processed_at' => 'datetime',
         ];
+    }
+
+    public function incomingMessage(): BelongsTo
+    {
+        return $this->belongsTo(Message::class, 'incoming_message_id');
+    }
+
+    public function responseMessage(): BelongsTo
+    {
+        return $this->belongsTo(Message::class, 'response_message_id');
     }
 }

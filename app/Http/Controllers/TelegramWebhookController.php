@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Jobs\ProcessTelegramUpdate;
+use App\Services\ConversationService;
 use App\Models\TelegramUpdate;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;

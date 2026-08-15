@@ -35,6 +35,7 @@ return [
         ],
     ],
     'llm' => [
+        'provider' => env('LLM_PROVIDER', 'openai'),
         'history_limit' => (int) env('LLM_HISTORY_LIMIT', 20),
         'openai' => [
             'api_key' => env('OPENAI_API_KEY'),
@@ -42,6 +43,16 @@ return [
             'api_url' => env('OPENAI_API_URL', 'https://api.openai.com/v1'),
             'timeout' => (int) env('OPENAI_TIMEOUT', 60),
             'max_output_tokens' => (int) env('OPENAI_MAX_OUTPUT_TOKENS', 800),
+        ],
+        'gigachat' => [
+            'authorization_key' => env('GIGACHAT_AUTHORIZATION_KEY'),
+            'scope' => env('GIGACHAT_SCOPE', 'GIGACHAT_API_PERS'),
+            'model' => env('GIGACHAT_MODEL', 'GigaChat-2'),
+            'api_url' => env('GIGACHAT_API_URL', 'https://api.giga.chat/v1'),
+            'auth_url' => env('GIGACHAT_AUTH_URL', 'https://ngw.devices.sberbank.ru:9443/api/v2/oauth'),
+            'timeout' => (int) env('GIGACHAT_TIMEOUT', 60),
+            'max_tokens' => (int) env('GIGACHAT_MAX_TOKENS', 800),
+            'verify_ssl' => env('GIGACHAT_VERIFY_SSL', true),
         ],
         'system_prompt' => <<<'TEXT'
             IDENTITY

@@ -77,10 +77,17 @@ final class ProcessTelegramUpdate implements ShouldQueue
                     $options = $this->adultConfirmationOptions();
                 } else {
                     $options = [];
-                    $responseText ??= $conversations->respond($incoming);
+                    if ($responseText === null) {
+                        $responseText = $conversations->respond($incoming);
+                        $response = $conversation->messages()
+                            ->where('role', 'assistant')
+                            ->where('content', $responseText)
+                            ->latest('created_at')
+                            ->firstOrFail();
+                    }
                 }
 
-                $response = Message::create([
+                $response ??= Message::create([
                     'conversation_id' => $conversation->id,
                     'role' => 'assistant',
                     'content' => $responseText,

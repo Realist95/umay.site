@@ -44,6 +44,13 @@ return [
             'timeout' => (int) env('OPENAI_TIMEOUT', 60),
             'max_output_tokens' => (int) env('OPENAI_MAX_OUTPUT_TOKENS', 800),
         ],
+        'gemini' => [
+            'api_key' => env('GEMINI_API_KEY'),
+            'model' => env('GEMINI_MODEL', 'gemini-2.5-flash'),
+            'api_url' => env('GEMINI_API_URL', 'https://generativelanguage.googleapis.com/v1beta'),
+            'timeout' => (int) env('GEMINI_TIMEOUT', 60),
+            'max_output_tokens' => (int) env('GEMINI_MAX_OUTPUT_TOKENS', 800),
+        ],
         'gigachat' => [
             'authorization_key' => env('GIGACHAT_AUTHORIZATION_KEY'),
             'scope' => env('GIGACHAT_SCOPE', 'GIGACHAT_API_PERS'),

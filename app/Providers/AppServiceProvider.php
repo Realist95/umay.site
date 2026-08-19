@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use App\Services\AI\GeminiLlmProvider;
 use App\Services\AI\GigaChatLlmProvider;
 use App\Services\AI\LlmProviderInterface;
 use App\Services\AI\OpenAiLlmProvider;
@@ -29,6 +30,14 @@ class AppServiceProvider extends ServiceProvider
                     apiUrl: (string) config('services.llm.openai.api_url'),
                     timeout: (int) config('services.llm.openai.timeout'),
                     maxOutputTokens: (int) config('services.llm.openai.max_output_tokens'),
+                ),
+                'gemini' => new GeminiLlmProvider(
+                    http: $http,
+                    apiKey: (string) config('services.llm.gemini.api_key'),
+                    model: (string) config('services.llm.gemini.model'),
+                    apiUrl: (string) config('services.llm.gemini.api_url'),
+                    timeout: (int) config('services.llm.gemini.timeout'),
+                    maxOutputTokens: (int) config('services.llm.gemini.max_output_tokens'),
                 ),
                 'gigachat' => new GigaChatLlmProvider(
                     http: $http,
